@@ -3,6 +3,7 @@ import os
 from io import BytesIO
 
 import gradio as gr
+import requests
 from PIL import Image
 from openai import OpenAI
 
@@ -15,6 +16,15 @@ def encode_image(image):
     buffered = BytesIO()
     image.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode('utf-8')
+
+
+def get_wikipedia_info(animal_name):
+    url = f"https://en.wikipedia.org/w/api.php?action=query&format=json&titles={animal_name}&prop=extracts&exintro&explaintext"
+    response = requests.get(url)
+    data = response.json()
+    page = next(iter(data['query']['pages'].values()))
+    description = page.get('extract', 'No description found.')
+    return description
 
 
 def animal_classifier_with_openai(image):
@@ -30,7 +40,7 @@ def animal_classifier_with_openai(image):
                 "role": "user",
                 "content": [
                     {"type": "text",
-                     "text": "What kind of animal is this? Respond with the name of the animal. For example, 'This is a cat'."},
+                     "text": "What kind of animal is this? Respond with the name of the animal. For example, 'cat'."},
                     {
                         "type": "image_url",
                         "image_url": {
@@ -43,7 +53,11 @@ def animal_classifier_with_openai(image):
         max_tokens=300,
     )
 
-    return response.choices[0].message.content
+    animal_name = response.choices[0].message.content.split(" ")[-1]
+    description = get_wikipedia_info(animal_name)
+    is_dangerous = any(keyword in description.lower() for keyword in ["danger", "attack", "kill"])
+
+    return f"{response.choices[0].message.content}\n\nDescription: {description}\nIs Dangerous: {is_dangerous}"
 
 
 def clear_result():
