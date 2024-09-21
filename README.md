@@ -15,7 +15,7 @@ You need to have the following installed on your machine:
 
 ## How to use it
 
-### Running the Agent
+### Running the script
 
 ```bash
 # Clone the repository
@@ -33,20 +33,30 @@ source venv/bin/activate
 # Install the dependencies
 pip install -r requirements.txt
 
-# Run the agent
+# Run the main script
 python main.py
 ```
 
-Make sure to set your OpenAI key before running: `export OPENAI_API_KEY-="sk-..."`
+Open the browser and go to the address shown in the terminal: http://127.0.0.1:7860
+
+**Important:** Make sure to set your OpenAI key before running: `export OPENAI_API_KEY-="sk-..."`
 
 ## Resources
 
-- Images: [Unsplash](https://unsplash.com/)
-  - See some images for testing in the `images` folder
+- Images:
+    - See some images for testing in the `images` folder.
+    - Taken from [Unsplash](https://unsplash.com/), under Free License.
 
-## Built With
+## Built with
 
 - [Python](https://www.python.org/)
 - [Gradio](https://www.gradio.app/)
 - [Pillow](https://python-pillow.org/)
 - [OpenAI](https://www.openai.com/)
+- [LlamaIndex](https://llamaindex.ai/)
+
+## Related Docs
+
+- [VectorStoreIndex](https://docs.llamaindex.ai/en/stable/module_guides/indexing/vector_store_index/)
+- [OpenAI Embeddings](https://docs.llamaindex.ai/en/stable/examples/embeddings/OpenAI/)
+- [WikipediaReader](https://docs.llamaindex.ai/en/stable/api_reference/readers/wikipedia/)
