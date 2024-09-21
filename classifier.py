@@ -55,7 +55,8 @@ class AnimalClassifier:
         self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         self.wiki_fetcher = WikiFetcher()
 
-    def encode_image(self, image):
+    @staticmethod
+    def encode_image(image):
         """
         Encodes a PIL Image object to a base64 string.
 

@@ -26,11 +26,14 @@ git clone
 # Change directory
 cd animals-classifier
 
+# Install virtualenv (in case you don't have it)
+pip install virtualenv
+
 # Create a virtual environment
-virtualenv venv
+python -m venv my_virtual_environment
 
 # Activate the virtual environment
-source venv/bin/activate
+source my_virtual_environment/bin/activate
 
 # Install the dependencies
 pip install -r requirements.txt
