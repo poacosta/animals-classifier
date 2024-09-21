@@ -3,6 +3,8 @@
 This is a simple image classifier that receives an image and if it is an animal, provides the name, description, and
 determines if the animal is dangerous based on Wikipedia info.
 
+![Captura de pantalla 2024-09-21 a las 08 43 02-fullpage](https://github.com/user-attachments/assets/5420b392-1cc8-42d7-81e0-e3716542b02d)
+
 ## Getting Started
 
 ### Prerequisites
